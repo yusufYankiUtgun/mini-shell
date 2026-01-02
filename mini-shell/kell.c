@@ -1,5 +1,27 @@
 #include "kell.h"
 
+
+
+
+void* resize(void* ptr, int new_size) {
+
+    void* temp_ptr = realloc(ptr, new_size);
+
+    if (temp_ptr == NULL) {
+        perror("kell: realloc");
+        return NULL;
+    }
+
+    return temp_ptr;
+
+}
+
+
+
+
+
+
+
 int main(int argc, char** argv) {
 
     char buff[1024];
