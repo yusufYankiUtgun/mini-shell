@@ -19,7 +19,43 @@ int handle_builtins(char** args) {
         }
         return BUILTIN_HANDLED;
     }
+    
+    if (strcmp(args[0], "pwd") == 0) {
 
+        size_t size = INITIAL_PATH_SIZE;
+        size_t buf_capacity = size * sizeof(char);
+        char* buf = malloc(buf_capacity);
+        
+        if (buf == NULL) {
+            perror("kell: malloc");
+        }
+
+        char* tmp = buf;
+
+        while (getcwd(buf, size) == NULL) {
+
+            if (errno == ERANGE) {
+                tmp = resize(buf, buf_capacity * 2);
+                if (tmp != NULL) {
+                    buf = tmp;
+                    buf_capacity *= 2;
+                    size *= 2;
+                } else {
+                    perror("kell: resize");
+                    break;
+                }
+
+            } else {
+                perror("kell: getcwd");
+                break;
+            }
+
+        }
+
+        fprintf(stdout, "kell: %s\n", buf);
+        free(buf);
+        return BUILTIN_HANDLED;
+    }
 
 
     return BUILTIN_NOT_FOUND;

@@ -6,6 +6,10 @@
 #include <errno.h>
 #include <unistd.h>
 
+#include "resize.h"
+
+#define INITIAL_PATH_SIZE 2
+
 typedef enum {
     BUILTIN_EXIT = 0,
     BUILTIN_HANDLED = 1,

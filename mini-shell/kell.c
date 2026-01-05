@@ -1,12 +1,16 @@
 #include "kell.h"
 
-
-
 int main(int argc, char** argv) {
     size_t buff_capacity = INITIAL_BUFF_SIZE * sizeof(char);
     char* buff = malloc(buff_capacity);
-    size_t args_number = INITIAL_ARGS_SIZE;
+    if (buff == NULL) {
+        perror("kell: malloc");
+    }
+    size_t args_number = INITIAL_ARGS_NUMBER;
     char** args = malloc(args_number * sizeof(char*));
+    if (args == NULL) {
+        perror("kell: malloc");
+    }
 
     while (1) {
         memset(args, 0, args_number * sizeof(char*));

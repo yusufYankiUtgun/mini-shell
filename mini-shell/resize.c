@@ -1,6 +1,5 @@
 #include "resize.h"
 
-
 void* resize(void* ptr, size_t new_size) {
     void* temp_ptr = realloc(ptr, new_size);
 
@@ -8,6 +7,5 @@ void* resize(void* ptr, size_t new_size) {
         perror("kell: realloc");
     }
     return temp_ptr;
-
 
 }

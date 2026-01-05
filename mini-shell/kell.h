@@ -12,6 +12,6 @@
 #include "resize.h"
 
 #define INITIAL_BUFF_SIZE 64
-#define INITIAL_ARGS_SIZE 8
+#define INITIAL_ARGS_NUMBER 8
 
 #endif
