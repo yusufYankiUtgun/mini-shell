@@ -9,6 +9,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include "handle_builtins.h"
+#include "resize.h"
+
 #define INITIAL_BUFF_SIZE 64
 #define INITIAL_ARGS_SIZE 8
 
