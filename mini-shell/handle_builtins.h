@@ -3,6 +3,8 @@
 
 #include<stdio.h>
 #include<string.h>
+#include <errno.h>
+#include <unistd.h>
 
 typedef enum {
     BUILTIN_EXIT = 0,

@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
         if (a == 0) {
             continue;
         }
-
+        
 
         int status = handle_builtins(args); // 0 stop | 1 builtins runned, continue | -1 fork and execute
         
