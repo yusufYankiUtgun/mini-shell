@@ -51,11 +51,38 @@ int handle_builtins(char** args) {
             }
 
         }
-
-        fprintf(stdout, "kell: %s\n", buf);
+        write(STDOUT_FILENO, "kell: ", 6);
+        write(STDOUT_FILENO, buf, strlen(buf));
+        write(STDOUT_FILENO, "\n", 1);
         free(buf);
         return BUILTIN_HANDLED;
     }
+
+    if (strcmp(args[0], "echo") == 0) {
+        int new_line_flag = 1;
+        int a = 1;
+                 
+        if (strcmp(args[1], "-n") == 0) {
+            new_line_flag == 0;
+            a = 2;
+        }
+
+        while (args[a] != NULL) {
+            write(STDOUT_FILENO, args[a], strlen(args[a])); 
+            
+            if (args[a + 1] != NULL) {
+                write(STDOUT_FILENO, " ", 1);
+            }
+            a++;
+        }
+
+        if (new_line_flag) {
+            write(STDOUT_FILENO, "\n", 1);
+        }
+
+        return BUILTIN_HANDLED;
+    }
+
 
 
     return BUILTIN_NOT_FOUND;
