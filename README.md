@@ -1,17 +1,38 @@
-# Low Level & Systems Lab
+## Low-Level Programming Practice
 
-Bu repo, sistem programlama ve düşük seviyeli yazılım dünyasını öğrenirken yaptığım çalışmaları içerir.
+This repository is used for learning and practicing **C**, **C++**, and **low-level programming concepts**.
 
-## Hedefler ve Yol Haritası
-- Git & Çalışma Ortamı Kurulumu
-- Pointer Mantığı
-- Dinamik Bellek Yönetimi
-- Custom Vector
-- Kendi `malloc` ve `free` fonksiyonlarım
-- Mini-Shell
+The main purpose is to better understand how programs work closer to the system level, including memory, processes, and performance-related details.
 
-## Kullanılan Araçlar
-- Dil: C / C++
-- İşletim Sistemi: Linux (Ubuntu)
-- Derleyici: GCC / Clang
+The content of this repository may change over time as I explore different topics and ideas.
 
+---
+
+## What this repository is about
+
+- Learning **C and C++**
+- Practicing low-level programming concepts
+- Writing small and basic projects
+- Experimenting with system-level ideas
+- Improving understanding of how software works under the hood
+
+There is no fixed roadmap — projects and experiments may evolve as I learn.
+
+---
+
+## Environment
+
+The code here is written and tested on **Linux**.
+
+Common tools:
+
+- gcc / g++
+- gdb
+- git
+
+---
+
+## Notes
+
+This repository is for **learning purposes**.
+Code may be incomplete, experimental, or change frequently.
