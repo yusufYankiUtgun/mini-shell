@@ -10,8 +10,10 @@
 #include<string.h>
 #include "handle_builtins.h"
 #include "resize.h"
+#include "build_args.h"
 
-#define INITIAL_BUFF_SIZE 64
-#define INITIAL_ARGS_NUMBER 8
+
+#define INITIAL_BUFF_SIZE 2
+#define INITIAL_ARGS_NUMBER 2
 
 #endif

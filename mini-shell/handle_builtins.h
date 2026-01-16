@@ -8,7 +8,7 @@
 
 #include "resize.h"
 
-#define INITIAL_PATH_SIZE 16
+#define INITIAL_PATH_SIZE 2
 
 typedef enum {
     BUILTIN_EXIT = 0,

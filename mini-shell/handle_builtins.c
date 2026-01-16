@@ -10,6 +10,11 @@ int handle_builtins(char** args) {
         if (args[2] != NULL) {
             fprintf(stderr, "kell: cd: too many arguments\n");
         } else {
+            
+            if (args[1] == NULL | args[1] == "~") {
+            args[1] = "/home";
+            }
+            
             int status = chdir(args[1]);
         
             if (status == -1) {
@@ -63,7 +68,7 @@ int handle_builtins(char** args) {
         int a = 1;
                  
         if (strcmp(args[1], "-n") == 0) {
-            new_line_flag == 0;
+            new_line_flag = 0;
             a = 2;
         }
 

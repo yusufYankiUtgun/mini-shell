@@ -12,92 +12,15 @@ int main(int argc, char** argv) {
         perror("kell: malloc");
     }
 
+    int eof_flag;
+
     while (1) {
-        memset(args, 0, args_number * sizeof(char*));
-        memset(buff, 0, buff_capacity);
         
-        int eof_flag = 1;
-        
-        printf("kell$ ");
-        fflush(stdout);
+        int build_args_status = build_args(&args, &buff, &buff_capacity, &args_number, &eof_flag);
 
-        int bytes_read = read(0, buff, buff_capacity - 1);
-        
-        if (bytes_read < 0) {  // actual error (not eof)
-            perror("kell: read");
-            continue;
-        }
-
-        if (bytes_read == 0) {
-            printf("\n");
+        if (build_args_status) {
             exit(EXIT_SUCCESS);
         }
-        
-        buff[bytes_read] = '\0';
-        
-        while(buff[strlen(buff) - 1] != '\n') {
-            int current_length = strlen(buff);
-
-            if (strlen(buff) == buff_capacity - 1) {
-                char* tmp = resize(buff, buff_capacity * 2);
-                
-                if (tmp != NULL) {
-                    buff = tmp;
-                    buff_capacity *= 2;                                                         
-                } else {
-                    perror("kell: resize");
-                    break;
-                }
-            }
-            
-            bytes_read = read(0 , buff + current_length, buff_capacity - current_length - 1);
-            
-            if (bytes_read == 0) {
-                eof_flag = 0;
-                break;
-            }
-            buff[current_length + bytes_read] = '\0';
-        }
-        
-        int a = 0;
-        
-        if (eof_flag) {
-            buff[strlen(buff) - 1] = '\0';
-        }
-        
-        char* token = strtok(buff, " \t\n\r");
-
-        int args_capacity_flag = 0;
-
-        while (token != NULL) {
-            if (a == args_number) {
-                char** tmp = resize(args, 2 * args_number * sizeof(char*));
-
-                if (tmp != NULL) {
-                    args = tmp;
-                    args_number *= 2;
-                } else {
-                    perror("kell: resize");
-                    args_capacity_flag = 1;
-                    break;
-                }
-            }
-            
-            args[a++] = token;
-            token = strtok(NULL, " \t\n\r");
-            
-        }
-
-        if (args_capacity_flag) {
-            continue;
-        }
-
-        args[a] = NULL;
-
-        if (a == 0) {
-            continue;
-        }
-        
 
         int status = handle_builtins(args); // 0 stop | 1 builtins runned, continue | -1 fork and execute
         
