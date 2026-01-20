@@ -11,10 +11,10 @@ int handle_builtins(char** args) {
             fprintf(stderr, "kell: cd: too many arguments\n");
         } else {
             
-            if (args[1] == NULL | args[1] == "~") {
-            args[1] = "/home";
-            }
-            
+            if (args[1] == NULL || args[1] == "~") {
+                args[1] = "/home";
+            }    
+
             int status = chdir(args[1]);
         
             if (status == -1) {
@@ -34,7 +34,6 @@ int handle_builtins(char** args) {
         if (buf == NULL) {
             perror("kell: malloc");
         }
-
         char* tmp = buf;
 
         while (getcwd(buf, size) == NULL) {

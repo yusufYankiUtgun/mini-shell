@@ -10,7 +10,7 @@
 #include<string.h>
 #include "handle_builtins.h"
 #include "resize.h"
-#include "build_args.h"
+#include "get_input.h"
 
 
 #define INITIAL_BUFF_SIZE 2
