@@ -11,6 +11,7 @@
 #include "handle_builtins.h"
 #include "resize.h"
 #include "get_input.h"
+#include "lexer.h"
 
 
 #define INITIAL_BUFF_SIZE 2

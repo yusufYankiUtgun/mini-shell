@@ -1,6 +1,5 @@
 #include "get_input.h"
 
-
 static char* buff = NULL;
 static size_t buff_capacity = 8;
 
@@ -47,7 +46,6 @@ char* get_input() {
         }
 
         
-
         if (buff_capacity == total_bytes + 1) {
             char* tmp = resize(buff, buff_capacity * 2);
             if (tmp != NULL) {
