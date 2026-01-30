@@ -6,6 +6,7 @@ token* tokenize_input(char* input) {
     token* head = curr_token;
     head->value = NULL;
     head->next = NULL;
+    head->type = TOKEN_EMPTY;
 
     int i = 0;
     int is_inside_quotes = 0;
@@ -20,12 +21,14 @@ token* tokenize_input(char* input) {
         char curr_char = input[i];
 
         if (is_inside_quotes == 1) {
+            
             if (curr_char == '\'' || curr_char == '\"') {
                 curr_token->type = TOKEN_WORD;
                 curr_token->value = strndup(input + word_start_index, word_length);
                 token* tmp = malloc(sizeof(token));
                 tmp->next = NULL;
                 tmp->value = NULL;
+                tmp->type = TOKEN_EMPTY;
                 curr_token->next = tmp;
                 curr_token = tmp;
 
@@ -43,6 +46,7 @@ token* tokenize_input(char* input) {
                     token* tmp = malloc(sizeof(token));
                     tmp->next = NULL;
                     tmp->value = NULL;
+                    tmp->type = TOKEN_EMPTY;
                     curr_token->next = tmp;
                     curr_token = tmp;
 
@@ -80,6 +84,7 @@ token* tokenize_input(char* input) {
                         token* tmp = malloc(sizeof(token));
                         tmp->next = NULL;
                         tmp->value = NULL;
+                        tmp->type = TOKEN_EMPTY;
                         curr_token->next = tmp;
                         curr_token = tmp;
 
@@ -105,6 +110,7 @@ token* tokenize_input(char* input) {
                         token* tmp = malloc(sizeof(token));
                         tmp->next = NULL;
                         tmp->value = NULL;
+                        tmp->type = TOKEN_EMPTY;
                         curr_token->next = tmp;
                         curr_token = tmp;
 
@@ -131,6 +137,7 @@ token* tokenize_input(char* input) {
                             token* tmp = malloc(sizeof(token));
                             tmp->next = NULL;
                             tmp->value = NULL;
+                            tmp->type = TOKEN_EMPTY;
                             curr_token->next = tmp;
                             curr_token = tmp;
 
@@ -156,6 +163,7 @@ token* tokenize_input(char* input) {
                             token* tmp = malloc(sizeof(token));
                             tmp->next = NULL;
                             tmp->value = NULL;
+                            tmp->type = TOKEN_EMPTY;
                             curr_token->next = tmp;
                             curr_token = tmp;
                             i++;
@@ -190,6 +198,7 @@ token* tokenize_input(char* input) {
         token* tmp = malloc(sizeof(token));
         tmp->next = NULL;
         tmp->value = NULL;
+        tmp->type = TOKEN_EMPTY;
         curr_token->next = tmp;
     }
     return head;

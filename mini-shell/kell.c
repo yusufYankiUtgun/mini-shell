@@ -10,8 +10,6 @@ int main(int argc, char** argv) {
     token* tok = tokenize_input(buff);
     token* walk = tok;
     
-
-
     while (walk != NULL) {
 
         printf("%s %d\n", walk->value, walk->type);

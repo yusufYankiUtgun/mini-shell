@@ -11,7 +11,8 @@ typedef enum {
     TOKEN_PIPE = 1, 
     TOKEN_REDIRECT_IN = 2,
     TOKEN_REDIRECT_OUT = 3,
-    TOKEN_REDIRECT_APPEND = 4
+    TOKEN_REDIRECT_APPEND = 4,
+    TOKEN_EMPTY = -1
 } t_token_type; 
 
 typedef struct token token;
