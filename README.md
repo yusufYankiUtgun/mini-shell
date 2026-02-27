@@ -1,38 +1,46 @@
-## Low-Level Programming Practice
+# kell 👨🏻‍🦲
 
-This repository is used for learning and practicing **C**, **C++**, and **low-level programming concepts**.
+A minimal Unix shell written in C.
 
-The main purpose is to better understand how programs work closer to the system level, including memory, processes, and performance-related details.
+## Features
 
-The content of this repository may change over time as I explore different topics and ideas.
+- Pipes (`|`) — chain multiple commands
+- Input/Output redirection (`<`, `>`)
+- Append redirection (`>>`)
+- Built-in commands
+- Signal handling
 
----
+## Requirements
 
-## What this repository is about
+- Linux
+- GCC
 
-- Learning **C and C++**
-- Practicing low-level programming concepts
-- Writing small and basic projects
-- Experimenting with system-level ideas
-- Improving understanding of how software works under the hood
+## Usage
 
-There is no fixed roadmap — projects and experiments may evolve as I learn.
+```
+gcc *.c -o kell 
+./kell
+```
 
----
+## Examples
 
-## Environment
+```sh
+ls | grep .c
+echo hello | cat
+cat < input.txt
+echo hello > output.txt
+echo world >> output.txt
+```
 
-The code here is written and tested on **Linux**.
+## Project Structure
 
-Common tools:
-
-- gcc / g++
-- gdb
-- git
-
----
-
-## Notes
-
-This repository is for **learning purposes**.
-Code may be incomplete, experimental, or change frequently.
+| File                                                            | Description                            |
+| --------------------------------------------------------------- | -------------------------------------- |
+| `kell.c` / `kell.h`                                             | Main shell loop                        |
+| `lexer.c` / `lexer.h`                                           | Tokenizes user input                   |
+| `parser.c` / `parser.h`                                         | Builds command linked list from tokens |
+| `execute_pipeline.c` / `execute_pipeline.h`                     | Handles pipeline execution             |
+| `execute_redirected_command.c` / `execute_redirected_command.h` | Handles I/O redirection                |
+| `handle_builtins.c` / `handle_builtins.h`                       | Built-in command handling              |
+| `get_input.c` / `get_input.h`                                   | Reads user input                       |
+| `resize.c` / `resize.h`                                         | Dynamic array resizing helper          |
