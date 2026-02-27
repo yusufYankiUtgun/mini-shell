@@ -12,7 +12,9 @@
 #include "resize.h"
 #include "get_input.h"
 #include "lexer.h"
-
+#include "parser.h"
+#include "execute_pipeline.h"
+#include "execute_redirected_command.h"
 
 #define INITIAL_BUFF_SIZE 2
 #define INITIAL_ARGS_NUMBER 2

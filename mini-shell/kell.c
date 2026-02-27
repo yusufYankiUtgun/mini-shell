@@ -2,19 +2,15 @@
 
 int main(int argc, char** argv) {
     
-    char* buff = get_input();
-
-    printf("%s\n" ,buff);
-    fflush(stdout);
-
-    token* tok = tokenize_input(buff);
-    token* walk = tok;
     
-    while (walk != NULL) {
+    while (1) {
 
-        printf("%s %d\n", walk->value, walk->type);
+        char* buff = get_input();
 
-        walk = walk->next;
+        token* token_head = tokenize_input(buff);
+        command* command_head = build_commands(token_head);
+
+        execute_pipeline(command_head);
+
     }
-    
 }
