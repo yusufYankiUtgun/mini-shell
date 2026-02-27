@@ -204,18 +204,14 @@ token* tokenize_input(char* input) {
     return head;
 }
 
-void free_tokens(token* walk) {
-    token* tmp;
-    
-    while (walk != NULL) {
-        tmp = walk->next;
+void free_tokens(token* head) {
+    while (head != NULL) {
         
-        if (walk->value != NULL) {
-            free(walk->value);
-        }
+        token* next = head->next;
+        free(head->value);
+        free(head);
 
-        free(walk);
-        walk = tmp;
+        head = next;
     }
 }
 
