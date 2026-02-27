@@ -1,6 +1,8 @@
 #include "parser.h"
 command* build_commands(token* walk) {
  
+    token* token_head = walk;
+
     int args_size = INITIAL_ARGS_SIZE;
     int curr_args_size = 0;
     int command_started = 0;
@@ -13,6 +15,9 @@ command* build_commands(token* walk) {
     curr_command->input_type = STANDART_IO;
     curr_command->output_type = STANDART_IO;
     curr_command->next_command = NULL;
+    head->input_source = NULL;
+    head->output_destination = NULL;
+    head->command_name = NULL;
 
 
     if (walk->type == TOKEN_PIPE) {
@@ -49,13 +54,13 @@ command* build_commands(token* walk) {
             } else if (walk->type == TOKEN_PIPE) {
                 
                 if (!is_prev_word) {
-                    fprintf(stderr, "kell: syntax error: need word after special character");
+                    fprintf(stderr, "kell: syntax error: need word after special character 1 ");
                     //WIP
                 }
                 is_prev_word = 0;
 
                 if (walk->next->type == TOKEN_EMPTY) {
-                    fprintf(stderr, "kell: syntax error: input ends with special character");
+                    fprintf(stderr, "kell: syntax error: input ends with special character ");
                     //WIP
                 }
 
@@ -74,7 +79,7 @@ command* build_commands(token* walk) {
             } else if (walk->type == TOKEN_REDIRECT_IN) {
 
                 if (!is_prev_word) {
-                    fprintf(stderr, "kell: syntax error: need word after special character");
+                    fprintf(stderr, "kell: syntax error: need word after special character 2 ");
                     //WIP
                 }
                 is_prev_word = 0;
@@ -99,7 +104,7 @@ command* build_commands(token* walk) {
                 
 
                 if (!is_prev_word) {
-                    fprintf(stderr, "kell: syntax error: need word after special character");
+                    fprintf(stderr, "kell: syntax error: need word after special character 3 ");
                     //WIP
                 }
                 is_prev_word = 0;
@@ -122,7 +127,7 @@ command* build_commands(token* walk) {
             } else if (walk->type == TOKEN_REDIRECT_APPEND) {
                 
                 if (!is_prev_word) {
-                    fprintf(stderr, "kell: syntax error: need word after special character");
+                    fprintf(stderr, "kell: syntax error: need word after special character 4 ");
                     //WIP
                 }
                 is_prev_word = 0;
@@ -154,6 +159,7 @@ command* build_commands(token* walk) {
                 
                 *(curr_command->args) = strdup(walk->value);
                 command_started = 1;
+                is_prev_word = 1;
 
             } else if (walk->type == TOKEN_REDIRECT_IN) {
 
@@ -231,6 +237,7 @@ command* build_commands(token* walk) {
         walk = walk->next;
     }
     curr_command->args[curr_args_size] = NULL;
+    free_tokens(token_head);
     return head;
 }
 
@@ -242,6 +249,9 @@ command* create_new_command(command* current) {
     new_command->output_type = STANDART_IO;
     new_command->next_command = NULL;
     current->next_command = new_command;
+    new_command->input_source = NULL;
+    new_command->output_destination = NULL;
+    new_command->command_name = NULL;
     
     return new_command;
 }
